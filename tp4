@@ -1,0 +1,167 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Funciones para las operaciones con cadenas
+
+string concatenarCadenas(string cadena1, string cadena2) {
+    return cadena1 + cadena2;
+}
+
+string reversoCadena(string cadena) {
+    reverse(cadena.begin(), cadena.end());
+    return cadena;
+}
+
+int contarCaracter(string cadena, char caracter) {
+    int contador = 0;
+    for (char c : cadena) {
+        if (c == caracter) {
+            contador++;
+        }
+    }
+    return contador;
+}
+
+int contarLetras(string cadena) {
+    int contador = 0;
+    for (char c : cadena) {
+        if (isalpha(c)) {
+            contador++;
+        }
+    }
+    return contador;
+}
+
+// Función para seleccionar operaciones de cadenas desde un menú
+
+void menuCadenas() {
+    int opcion;
+    cout << "Seleccione una opción:" << endl;
+    cout << "1. Concatenar dos cadenas" << endl;
+    cout << "2. Obtener el reverso de una cadena" << endl;
+    cout << "3. Contar la cantidad de veces que aparece un carácter específico en una cadena" << endl;
+    cout << "4. Contar la cantidad de letras en una cadena" << endl;
+    cout << "Ingrese el número de la opción deseada: ";
+    cin >> opcion;
+
+    string cadena1, cadena2, cadena;
+    char caracter;
+
+    switch (opcion) {
+        case 1:
+            cout << "Ingrese la primera cadena: ";
+            cin >> cadena1;
+            cout << "Ingrese la segunda cadena: ";
+            cin >> cadena2;
+            cout << "La concatenación de ambas cadenas es: " << concatenarCadenas(cadena1, cadena2) << endl;
+            break;
+        case 2:
+            cout << "Ingrese una cadena: ";
+            cin >> cadena;
+            cout << "El reverso de la cadena es: " << reversoCadena(cadena) << endl;
+            break;
+        case 3:
+            cout << "Ingrese una cadena: ";
+            cin >> cadena;
+            cout << "Ingrese el carácter a buscar: ";
+            cin >> caracter;
+            cout << "El carácter '" << caracter << "' aparece " << contarCaracter(cadena, caracter) << " veces en la cadena." << endl;
+            break;
+        case 4:
+            cout << "Ingrese una cadena: ";
+            cin >> cadena;
+            cout << "La cantidad de letras en la cadena es: " << contarLetras(cadena) << endl;
+            break;
+        default:
+            cout << "Opción no válida." << endl;
+            break;
+    }
+}
+
+// Función para comparar dos cadenas alfabéticamente
+
+void compararCadenas(string cadena1, string cadena2) {
+    if (cadena1 == cadena2) {
+        cout << "Las cadenas son iguales." << endl;
+    } else if (cadena1 < cadena2) {
+        cout << "La primera cadena ingresada es mayor alfabéticamente." << endl;
+    } else {
+        cout << "La segunda cadena ingresada es mayor alfabéticamente." << endl;
+    }
+}
+
+// Función para mostrar elementos de un vector en orden inverso
+
+void mostrarVectorInverso(int vector[], int longitud) {
+    cout << "Elementos del vector en orden inverso:" << endl;
+    for (int i = longitud - 1; i >= 0; i--) {
+        cout << vector[i] << " ";
+    }
+    cout << endl;
+}
+
+// Función para calcular la suma y el promedio de los elementos de un vector
+
+void calcularSumaPromedio(int vector[], int longitud) {
+    int suma = 0;
+    for (int i = 0; i < longitud; i++) {
+        suma += vector[i];
+    }
+    double promedio = static_cast<double>(suma) / longitud;
+    cout << "La suma de los elementos del vector es: " << suma << endl;
+    cout << "El promedio de los elementos del vector es: " << promedio << endl;
+}
+
+int main() {
+    // Ejemplo de uso de las funciones
+    string cadena1, cadena2;
+    char caracter;
+    int vector[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int n = 10;
+
+    // i. Concatenar dos cadenas
+    cout << "Ingrese la primera cadena: ";
+    cin >> cadena1;
+    cout << "Ingrese la segunda cadena: ";
+    cin >> cadena2;
+    cout << "La concatenación de ambas cadenas es: " << concatenarCadenas(cadena1, cadena2) << endl;
+
+    // ii. Obtener el reverso de una cadena
+    cout << "Ingrese una cadena: ";
+    cin >> cadena1;
+    cout << "El reverso de la cadena es: " << reversoCadena(cadena1) << endl;
+
+    // iii. Contar la cantidad de veces que aparece un carácter específico en una cadena
+    cout << "Ingrese una cadena: ";
+    cin >> cadena1;
+    cout << "Ingrese el carácter a buscar: ";
+    cin >> caracter;
+    cout << "El carácter '" << caracter << "' aparece " << contarCaracter(cadena1, caracter) << " veces en la cadena." << endl;
+
+    // iv. Contar la cantidad de letras en una cadena
+    cout << "Ingrese una cadena: ";
+    cin >> cadena1;
+    cout << "La cantidad de letras en la cadena es: " << contarLetras(cadena1) << endl;
+
+    // v. Menú de opciones para operaciones con cadenas
+    menuCadenas();
+
+    // vi. Comparar dos cadenas alfabéticamente
+    cout << "Ingrese la primera cadena: ";
+    cin >> cadena1;
+    cout << "Ingrese la segunda cadena: ";
+    cin >> cadena2;
+    compararCadenas(cadena1, cadena2);
+
+    // vii. Mostrar elementos de un vector en orden inverso
+    mostrarVectorInverso(vector, 10);
+
+    // viii. Calcular la suma y el promedio de los elementos de un vector
+    calcularSumaPromedio(vector, 10);
+
+    return 0;
+}
