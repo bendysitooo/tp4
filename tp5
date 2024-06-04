@@ -1,0 +1,137 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+// Función para ordenar un vector de strings alfabéticamente
+void ordenarVectorString(string vector[], int longitud) {
+    sort(vector, vector + longitud);
+}
+
+// Función para ordenar un vector de enteros
+void ordenarVectorEnteros(int vector[], int longitud) {
+    sort(vector, vector + longitud);
+}
+
+// Función para ordenar un vector de enteros usando el método de ordenamiento de burbuja
+void ordenarBurbuja(int vector[], int longitud) {
+    for (int i = 0; i < longitud - 1; i++) {
+        for (int j = 0; j < longitud - i - 1; j++) {
+            if (vector[j] > vector[j + 1]) {
+                swap(vector[j], vector[j + 1]);
+            }
+        }
+    }
+}
+
+// Función para ordenar un vector de enteros usando el método de ordenamiento por inserción
+void ordenarInsercion(int vector[], int longitud) {
+    for (int i = 1; i < longitud; i++) {
+        int key = vector[i];
+        int j = i - 1;
+        while (j >= 0 && vector[j] > key) {
+            vector[j + 1] = vector[j];
+            j = j - 1;
+        }
+        vector[j + 1] = key;
+    }
+}
+
+// Función para buscar un elemento en un vector de enteros
+bool buscarElemento(int vector[], int longitud, int elemento) {
+    for (int i = 0; i < longitud; i++) {
+        if (vector[i] == elemento) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int main() {
+    // 1. Ordenamiento alfabético de un vector de países
+    string paises[5];
+    cout << "Ingrese nombres de 5 paises:" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << "País " << i + 1 << ": ";
+        cin >> paises[i];
+    }
+    ordenarVectorString(paises, 5);
+    cout << "Paises ordenados alfabéticamente:" << endl;
+    for (int i = 0; i < 5; i++) {
+        cout << paises[i] << endl;
+    }
+    cout << endl;
+
+    // 2. Ordenamiento de un vector de enteros
+    int n_enteros;
+    cout << "Ingrese la cantidad de elementos del vector de enteros: ";
+    cin >> n_enteros;
+    int vector_enteros[n_enteros];
+    cout << "Ingrese " << n_enteros << " enteros:" << endl;
+    for (int i = 0; i < n_enteros; i++) {
+        cout << "Elemento " << i + 1 << ": ";
+        cin >> vector_enteros[i];
+    }
+    ordenarVectorEnteros(vector_enteros, n_enteros);
+    cout << "Vector de enteros ordenado:" << endl;
+    for (int i = 0; i < n_enteros; i++) {
+        cout << vector_enteros[i] << " ";
+    }
+    cout << endl << endl;
+
+    // 3. Ordenamiento de un vector de enteros usando el método de burbuja
+    int n_burbuja;
+    cout << "Ingrese la cantidad de elementos del vector para el método de burbuja: ";
+    cin >> n_burbuja;
+    int vector_burbuja[n_burbuja];
+    cout << "Ingrese " << n_burbuja << " enteros:" << endl;
+    for (int i = 0; i < n_burbuja; i++) {
+        cout << "Elemento " << i + 1 << ": ";
+        cin >> vector_burbuja[i];
+    }
+    ordenarBurbuja(vector_burbuja, n_burbuja);
+    cout << "Vector ordenado usando el método de burbuja:" << endl;
+    for (int i = 0; i < n_burbuja; i++) {
+        cout << vector_burbuja[i] << " ";
+    }
+    cout << endl << endl;
+
+    // 4. Ordenamiento de un vector de enteros usando el método de inserción
+    int n_insercion;
+    cout << "Ingrese la cantidad de elementos del vector para el método de inserción: ";
+    cin >> n_insercion;
+    int vector_insercion[n_insercion];
+    cout << "Ingrese " << n_insercion << " enteros:" << endl;
+    for (int i = 0; i < n_insercion; i++) {
+        cout << "Elemento " << i + 1 << ": ";
+        cin >> vector_insercion[i];
+    }
+    ordenarInsercion(vector_insercion, n_insercion);
+    cout << "Vector ordenado usando el método de inserción:" << endl;
+    for (int i = 0; i < n_insercion; i++) {
+        cout << vector_insercion[i] << " ";
+    }
+    cout << endl << endl;
+
+    // 5. Búsqueda de un elemento en un vector de enteros
+    int n_busqueda;
+    cout << "Ingrese la cantidad de elementos del vector para la búsqueda: ";
+    cin >> n_busqueda;
+    int vector_busqueda[n_busqueda];
+    cout << "Ingrese " << n_busqueda << " enteros:" << endl;
+    for (int i = 0; i < n_busqueda; i++) {
+        cout << "Elemento " << i + 1 << ": ";
+        cin >> vector_busqueda[i];
+    }
+    int valor;
+    cout << "Ingrese un valor a buscar: ";
+    cin >> valor;
+    if (buscarElemento(vector_busqueda, n_busqueda, valor)) {
+        cout << "El valor " << valor << " se encuentra en el vector." << endl;
+    } else {
+        cout << "El valor " << valor << " no se encuentra en el vector." << endl;
+    }
+
+    return 0;
+}
